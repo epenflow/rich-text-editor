@@ -12,13 +12,23 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
-import { TRANSFORMERS } from '@lexical/markdown';
+import { $convertToMarkdownString, TRANSFORMERS } from '@lexical/markdown';
 import RichTextAction from '@/components/rich-text-action';
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import CodeHighlightPlugin from '@/components/code-highlight-plugin';
 import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
+import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
+import { $getRoot, EditorState } from 'lexical';
 
+function onChange(EditorState: EditorState) {
+	EditorState.read(() => {
+		// const root = $getRoot();
+		// const contentText = root.getTextContent();
+		// const contentMarkdown = $convertToMarkdownString(TRANSFORMERS);
+		// const contentJSON = EditorState.toJSON();
+	});
+}
 const RichTextEditor = () => {
 	return (
 		<div className="container my-6">
@@ -44,6 +54,7 @@ const RichTextEditor = () => {
 					<MarkdownShortcutPlugin transformers={TRANSFORMERS} />
 					<CodeHighlightPlugin />
 					<HistoryPlugin />
+					<OnChangePlugin onChange={onChange} />
 				</CardContent>
 				<CardFooter>
 					<RichTextAction />

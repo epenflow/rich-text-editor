@@ -11,6 +11,7 @@ import {
 	RxCode,
 } from 'react-icons/rx';
 import { IconType } from 'react-icons/lib';
+import RichTextBlockFormatDropdown from '@/components/rich-text-block-format-dropdown';
 interface MappingWrapperProps<T> {
 	items?: Array<T>;
 	render: (item: T, index: number) => React.ReactNode;
@@ -97,7 +98,7 @@ const RichTextToolbar = () => {
 	];
 	return (
 		<div className="flex gap-2 items-center">
-			<h1>Rich Text Toolbar</h1>
+			<RichTextBlockFormatDropdown />
 			<div className="flex gap-2">
 				<MappingWrapper
 					items={TextCommands}
@@ -105,15 +106,12 @@ const RichTextToolbar = () => {
 						<RichTextActionToggle
 							onClick={onClick}
 							key={index}
-							className="group">
-							<Icon
-								className={cn(
-									activeCommands.includes(command)
-										? 'text-foreground'
-										: 'text-foreground/50',
-									'group-hover:text-foreground transition-all duration-100 ease-linear',
-								)}
-							/>
+							className={cn(
+								activeCommands.includes(command)
+									? 'text-foreground'
+									: 'text-foreground/50',
+							)}>
+							<Icon />
 						</RichTextActionToggle>
 					)}
 				/>

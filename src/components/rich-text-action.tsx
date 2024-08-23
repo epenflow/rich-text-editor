@@ -2,7 +2,6 @@ import RichTextActionToggle from '@/components/rich-text-action-toggle';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { $createTextNode, $getRoot, RootNode } from 'lexical';
 import { BsMarkdown } from 'react-icons/bs';
-import { IconBaseProps } from 'react-icons/lib';
 import { $createCodeNode, $isCodeNode } from '@lexical/code';
 import {
 	$convertFromMarkdownString,
@@ -11,9 +10,7 @@ import {
 import { PLAYGROUND_TRANSFORMERS } from '@/lib/markdown-transformer';
 const RichTextAction = () => {
 	const [editor] = useLexicalComposerContext();
-	const IconStyle: IconBaseProps = {
-		className: 'text-foreground/50 hover:text-foreground',
-	};
+
 	function handleMarkdown(): void {
 		editor.update(() => {
 			const root: RootNode = $getRoot();
@@ -42,7 +39,7 @@ const RichTextAction = () => {
 	return (
 		<div>
 			<RichTextActionToggle onClick={handleMarkdown}>
-				<BsMarkdown {...IconStyle} />
+				<BsMarkdown />
 			</RichTextActionToggle>
 		</div>
 	);

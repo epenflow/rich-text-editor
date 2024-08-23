@@ -9,7 +9,10 @@ const RichTextActionToggle = React.forwardRef<
 		<button
 			{...rest}
 			ref={ref}
-			className={cn('bg-foreground/5 rounded-xl p-2', className)}
+			className={cn(
+				'bg-foreground/5 rounded-xl p-2 hover:text-foreground text-foreground/50 transition-all duration-100 ease-linear hover:bg-foreground/10',
+				className,
+			)}
 		/>
 	);
 });
